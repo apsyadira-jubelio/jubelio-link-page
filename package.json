@@ -1,0 +1,77 @@
+{
+	"name": "singlelink",
+	"private": false,
+	"version": "4.1.0",
+	"homepage": "https://singlelink.co",
+	"license": "GPL-3.0-or-later",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"build:docker": "docker build -t jimbisenius/singlelink ./docker",
+		"start": "next start",
+		"lint": "next lint",
+		"generate": "graphql-codegen --config codegen.yml --watch",
+		"migrate:make": "npx ts-node ./migrate.ts make:migration:system --name",
+		"migrate:up": "npx knex migrate:latest --migrations-directory ./migrations/system --env=development",
+		"migrate:down": "npx knex migrate:down --migrations-directory ./migrations/system --env=development",
+		"migrate:rollback": "npx knex migrate:rollback --migrations-directory ./migrations/system --env",
+		"boot:app": "docker pull singlelink | docker run --name singlelink-app -p 3000:3000 singlelink",
+		"boot:db": "docker pull mysql | docker run --name singlelink-mysql -e MYSQL_DATABASE=singlelink -p 3306:3306 -e MYSQL_ROOT_PASSWORD=single-my-links -d mysql:latest"
+	},
+	"dependencies": {
+		"@apollo/client": "^3.5.8",
+		"@heroicons/react": "^2.0.16",
+		"apollo-server-micro": "^3.6.3",
+		"bluebird": "^3.7.2",
+		"dotenv-run-script": "^0.2.0",
+		"graphql": "15.7.2",
+		"html-react-parser": "^1.4.8",
+		"jsonwebtoken": "^8.5.1",
+		"micro": "^9.3.4",
+		"micro-cors": "^0.1.1",
+		"next": "latest",
+		"next-absolute-url": "^1.2.2",
+		"pg-promise": "^11.2.0",
+		"react": "^17.0.2",
+		"react-beautiful-dnd": "^13.1.0",
+		"react-dom": "^17.0.2",
+		"ts-node": "^10.9.1"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^2.6.2",
+		"@graphql-codegen/typescript": "1.22.0",
+		"@graphql-codegen/typescript-operations": "1.17.16",
+		"@graphql-codegen/typescript-react-apollo": "^3.2.2",
+		"@graphql-codegen/typescript-resolvers": "1.18.0",
+		"@types/bluebird": "^3.5.38",
+		"@types/node": "^17.0.17",
+		"@types/pg-promise": "^5.4.3",
+		"@types/react": "17.0.39",
+		"@types/react-beautiful-dnd": "^13.1.2",
+		"@types/yargs": "^17.0.22",
+		"autoprefixer": "^10.4.2",
+		"camelize-ts": "^1.0.8",
+		"dotenv": "^16.0.3",
+		"eslint": "8.8.0",
+		"eslint-config-next": "12.0.10",
+		"graphql-codegen": "^0.4.0",
+		"knex": "^2.4.2",
+		"postcss": "^8.4.6",
+		"tailwindcss": "^3.0.21",
+		"typescript": "4.5.5",
+		"yargs": "^17.7.0"
+	},
+	"bugs": {
+		"url": "https://github.com/Neutron-Creative/Singlelink/issues",
+		"email": "jim@neutroncreative.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Neutron-Creative/Singlelink.git"
+	},
+	"author": {
+		"name": "Jim Bisenius",
+		"email": "jim@neutroncreative.com",
+		"url": "https://twitter.com/jim_bisenius"
+	}
+}
